@@ -15,6 +15,7 @@
         String msg = "";
         if (res.equals("1")){
             msg = USER_ID +"님이 로그인 되었습니다.";
+
         }else if (res.equals("0")){
             msg = "아이디, 비밀번호가 일치하지 않습니다.";
 
@@ -25,16 +26,11 @@
     %>
     <script type="text/javascript">
         alert("<%=msg%> ");
-        let res = '<%=res%>';
-        if(res == 1) {
-            location.href="/index";
-        } else if(res == 0) {
-            location.href="/user/Login";
-        } else {
-            location.href="/user/Login";
-        }
     </script>
 </head>
 <body>
+<script>
+    location.href="/index"
+    </script>
 </body>
 </html>

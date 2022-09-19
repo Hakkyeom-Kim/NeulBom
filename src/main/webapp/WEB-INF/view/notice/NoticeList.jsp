@@ -139,7 +139,8 @@
 <div class="card mb-4">
     <div class="card-header">
         <i class="fas fa-table me-1"></i>
-        <h3>게시판</h3> <input type="button" class="btn btn-primary" onclick="noticeED()" value="글쓰기" />
+        게시판
+        <input type="button" onclick="noticeED()" value="글쓰기" />
     </div>
     <div class="card-body">
         <div class="card-body" style="text-align: center">
@@ -151,6 +152,7 @@
                 <div class="col-2"><h5>등록일</h5></div>
                 <hr/>
             </div>
+            <tr/>
                 <%
                                 for (int i = 0; i < rList.size(); i++) {
                                     NoticeDTO rDTO = rList.get(i);
@@ -164,7 +166,7 @@
                 <div class="col-2">
                     <%
                         //공지글이라면, [공지]표시
-                        if (CmmUtil.nvl(rDTO.getNotice_yn()).equals("Y")) {
+                        if (CmmUtil.nvl(rDTO.getNotice_yn()).equals("1")) {
                             out.print("<b>[공지]</b>");
 
                             //공지글이 아니라면, 글번호 보여주기
@@ -185,8 +187,6 @@
                 </div>
                 <div class="col-2"><%=CmmUtil.nvl(rDTO.getReg_dt()) %>
                 </div>
-                <hr/>
-            </div>
                 <%
                     }
                 %>

@@ -58,6 +58,7 @@ public class ChatRedisMapper implements IChatRedisMapper {
 
         redisDB.setKeySerializer(new StringRedisSerializer()); // String 타입
         redisDB.setValueSerializer(new Jackson2JsonRedisSerializer<>(ChatMessageDTO.class)); // JSON 타입
+
         if (redisDB.hasKey(roomKey)) {
 
             // 저장된 전체 레코드 가져오기
@@ -70,6 +71,4 @@ public class ChatRedisMapper implements IChatRedisMapper {
 
         return rList;
     }
-
-
 }

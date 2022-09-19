@@ -3,9 +3,6 @@
          pageEncoding="UTF-8" %>
 <%
     String roomId = (String) request.getAttribute("roomId");
-    //roomId = 고객id_보호소명
-
-    //유저명
     String writer = (String) session.getAttribute("USER_NAME");
 %>
 
@@ -31,17 +28,11 @@
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 <script>
 
-
-    /**
-     *  writer : 유저명 (사용자 = 이름, 관리자 = 보호소명)
-     *  roomId : 방이름
-     *
-     */
     const writer = "<%=writer%>";
     const roomId = "<%=roomId%>";
 
     window.onload = function () {
-        $("#outChat").hide();
+
         //아작스로 redis 채팅 내역 가져오기
         $.ajax({
             url: "getChatList",
@@ -87,14 +78,11 @@
     function onClose() {
         stomp.send('/pub/chat/exit', {}, JSON.stringify({"roomId": roomId, "writer": writer}));
         stomp.disconnect();
-        $("#outChat").hide();
-        $("#inChat").show();
     }
 
     // 채팅창에 들어왔을 때
     function onOpen() {
-        $("#outChat").show();
-        $("#inChat").hide();
+
         sockJs = new SockJS("/stomp/chat");
 
         //1. SockJS를 내부에 들고있는 stomp를 내어줌

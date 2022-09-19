@@ -5,9 +5,6 @@
 <html lang="en">
 
 <head>
-    <!-- j쿼리 -->
-    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-
     <script type="text/javascript">
         //회원가입 정보의 유효성 체크하기
         function doRegUserCheck(f){
@@ -58,22 +55,18 @@
     <script>
         //아이디 중복 검사
         function checkId() {
-            let id = $('#inputFirstName').val();
+            var id = $('#inputFirstName').val();
             $.ajax({
                 url:'/user/idCheck',
-                type:'get',
-                contentType:"application/json",
-                data:{
-                    'user_id': id
-                },
-                dataType: 'text',
+                type:'post',
+                data:{user_id : id},
                 success:function (cnt) {
                     if (cnt != 1) {
-                        $('#id_input_re_1').css("display","block");
-                        $('#id_input_re_2').css("display","none");
+                        $('.id_input_re_1').css("display","inline-block");
+                        $('.id_input_re_2').css("display","none");
                     }else {
-                        $('#id_input_re_1').css("display","none");
-                        $('#id_input_re_2').css("display","block");
+                        $('.id_input_re_1').css("display","none");
+                        $('.id_input_re_2').css("display","inline-block");
                     }
                     console.log("성공");
                 },
@@ -114,15 +107,15 @@
 
                 <form action="index.html">
                     <div class="form-group position-relative has-icon-left mb-4">
-                        <input type="text" id="inputFirstName" class="form-control form-control-xl" name="user_id" placeholder="아이디를 입력해 주세요." required onchange="checkId()" />
+                        <input type="text" class="form-control form-control-xl" name="user_id" placeholder="아이디를 입력해 주세요." required oninput="checkId()" />
                         <div class="form-control-icon">
                             <i class="bi bi-person-badge"></i>
 
                         </div>
-                    </div>
-                    <div class="row mb-3">
-                        <div id="id_input_re_1" >사용 가능한 아이디 입니다.</div>
-                        <div id="id_input_re_2" >아이디가 이미 존재합니다.</div>
+                        <div class="row mb-3">
+                            <span class="id_input_re_1" >사용 가능한 아이디 입니다.</span>
+                            <span class="id_input_re_2" >아이디가 이미 존재합니다.</span>
+                        </div>
                     </div>
 
                     <div class="form-group position-relative has-icon-left mb-4">
@@ -200,6 +193,8 @@
         }
     </script>
 </form>
+<script>
+</script>
 </body>
 
 </html>

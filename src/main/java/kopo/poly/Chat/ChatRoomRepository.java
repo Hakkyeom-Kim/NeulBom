@@ -58,7 +58,7 @@ public class ChatRoomRepository {
         return result;
     }
 
-    public ChatRoomDTO findRoomById(String id) {
+    public ChatRoomDTO findRoomById(String id){
         return chatRoomDTOMap.get(id);
     }
 
